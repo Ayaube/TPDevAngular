@@ -1,0 +1,22 @@
+<section>
+  <header>
+    <h1>Liste des Utilisateurs</h1>
+    <p>Total d'utilisateurs : {{ totalUtilisateurs }}</p>
+    <p>Pourcentage d'hommes : {{ pourcentageHommes | number:'1.2-2' }}%</p>
+    <p>Pourcentage de femmes : {{ pourcentageFemmes | number:'1.2-2' }}%</p>
+  </header>
+
+  <main>
+    <ul>
+      <ng-container *ngFor="let profil of profilsUtilisateurs; trackBy: suivreParId">
+        <li>
+          <article>
+            <p><strong>ID Utilisateur :</strong> {{ profil.user_id }}</p>
+            <p><strong>ID Société :</strong> {{ profil.company_id }}</p>
+            <img [src]="profil.imgUrl" alt="Photo de profil" />
+          </article>
+        </li>
+      </ng-container>
+    </ul>
+  </main>
+</section>

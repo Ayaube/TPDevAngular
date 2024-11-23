@@ -1,0 +1,30 @@
+<section>
+  <header>
+    <p>Total de likes : {{ totalLikes }}</p>
+    <p>Total de dislikes : {{ totalDislikes }}</p>
+  </header>
+
+  <main>
+    <p *ngIf="avisAffiches.length === 0">Aucun avis à afficher.</p>
+    <ul *ngIf="avisAffiches.length > 0">
+      <ng-container *ngFor="let avis of avisAffiches; let idx = index">
+        <li>
+          <article>
+            <p><strong>ID :</strong> {{ avis.message_id }}</p>
+            <p><strong>Avis :</strong> {{ avis.like === 1 ? 'Positif' : 'Négatif' }}</p>
+            <p><strong>Motif :</strong> {{ avis.motif }}</p>
+            <div class="actions">
+              <button (click)="ajouterLike(idx)">👍 Like</button>
+              <button (click)="ajouterDislike(idx)">👎 Dislike</button>
+            </div>
+          </article>
+        </li>
+      </ng-container>
+    </ul>
+  </main>
+</section>
+
+<section class="controls">
+  <button (click)="rendreToutPositif()">Tout rendre positif</button>
+  <button (click)="melangerAvis()">Mélanger les avis</button>
+</section>

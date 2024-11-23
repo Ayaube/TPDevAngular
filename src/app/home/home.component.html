@@ -1,0 +1,268 @@
+<h1>Application de gestion des utilisateurs</h1>
+
+<div class="flag">
+  <img src="/assets/drapeau.PNG" alt="" />
+</div>
+<section>
+  <h2>Mission : Contrôle des individus de Appland</h2>
+  <p>
+    Bienvenue ! Vous avez été choisi pour travailler sur l'interface de données
+    de notre République Démocratique d'Appland.
+  </p>
+
+  <p>
+    Ici, dans ce noble pays qui valorise la positivité, chaque citoyen est
+    satisfait par décret ! Vous êtes désormais responsable de la gestion et
+    l'analyse des données de satisfaction, qui reflètent la parfaite sérénité
+    des citoyens de notre belle nation. Cependant, certains éléments dans les
+    données pourraient parfois indiquer une forme d'insatisfaction… et cela est
+    tout à fait inacceptable.
+  </p>
+
+  <p>
+    Votre mission est simple : garantir que les données reflètent uniquement la
+    positivité et la paix qui règnent à Appland, tout en gardant un œil sur
+    d'éventuels observateurs extérieurs.
+  </p>
+
+  <h2>Objectifs</h2>
+
+  <h3>0. Identité de l'agent</h3>
+  <section class="goal">
+    <h4>Attendu</h4>
+    <p>Dans le header de l'application, ajoutez votre nom</p>
+  </section>
+  <h3>1. Afficher les utilisateurs</h3>
+  <p>
+    La page <a routerLink="/users">Liste des utilisateurs</a>
+    récupère la liste des utilisateurs.
+    Il faut que vous affichiez pour chaque utilisateur: </p>
+  <ul>
+    <li>Son id</li>
+    <li>L'id de la compagnie</li>
+    <li>Une image de profil</li>
+  </ul>
+
+  <p>De manière globale, il faut également pouvoir accéder à quelques
+    informations statistiques:
+  </p>
+  <ul>
+    <li>Le nombre total d'utilisateurs</li>
+    <li>Le pourcentage d'hommes</li>
+    <li>Le pourcentage de femmes</li>
+  </ul>
+
+  <section class="goal">
+    <h4>Attendu</h4>
+    <p>
+      Sur la page <a routerLink="/users">Liste des utilisateurs</a>, ajoutez les
+      statistiques suivantes :
+    </p>
+    <ul>
+      <li>Le nombre d'utilisateurs</li>
+      <li>Le pourcentage d'hommes</li>
+      <li>Le pourcentage de femmes</li>
+    </ul>
+
+    <p>
+      Vous pouvez identifier le type de personne en faisant une recherche sur la
+      propriété imgUrl. Les hommes contiendront la sous-chaîne
+      <code>/men</code>
+      et les femmes <code>/women</code>
+    </p>
+
+    <h4>Route API</h4>
+    <p>
+      Il est possible d'appeler la route avec une méthode GET sur l'URL suivante
+      :
+    </p>
+    <code> http://localhost:5000/users </code>
+
+    Rappel de la structure d'un utilisateur tel que renvoyé par l'API
+    <pre>
+      {{ "{" }}
+        "user_id": 1,
+        "company_id": 1,
+        "imgUrl": "string"
+      {{ "}" }}
+  </pre>
+
+    <h4>Conseil</h4>
+    <p>
+      Vous pouvez filtrer le tableau ou bien utiliser une fonction avec un
+      reducer pour faire la somme
+    </p>
+    <p>Pensez à vérifier qu'on ne divise pas par 0</p>
+  </section>
+
+  <h3>2. Ajouter la page <em>Satisfaction</em></h3>
+
+  <p>
+    Cette page doit appeler un service dédié à la satisfaction et séparer sa
+    présentation en composants
+  </p>
+  <p>
+    Un composant doit permettre de voir le nombre de dislikes et de dislikes
+  </p>
+  <p>
+    Il y a énormément de données, alors il faudra créer une pagination
+    permettant de voir maximum 50 réactions par page. Il faudra naturellement
+    pouvoir naviguer de page en page. Attention à ne pas avoir d'index négatif
+    ou dépasser le nombre de pages.
+  </p>
+
+  <section class="goal">
+    <h4>Attendu</h4>
+
+    <ul>
+      <li>Créer un type représentant un objet de satisfaction</li>
+      <li>
+        Créer un composant qui va afficher les données:
+        <ul>
+          <li>Le nombre de likes</li>
+          <li>Le nombre de dislikes</li>
+        </ul>
+      </li>
+
+      <li>
+        Créer un composant de liste:
+        <ul>
+          <li>Gestion de la pagination (rappelez vous offset et limit)</li>
+          <li>
+            50 entrées par page maximum (vous pouvez choisir un nombre inférieur
+            pour la limite si vous souhaitez)
+          </li>
+          <li>
+            Chaque donnée présente l'id du message, un texte "Positif" si like
+            est égal à 1, "Négatif" si dislike est égal à 0, et le motif du
+            message
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Route API</h4>
+    <p>
+      Il est possible d'appeler la route avec une méthode GET sur l'URL suivante
+      :
+    </p>
+    <code> http://localhost:5000/satisfaction </code>
+
+    <p>
+      Rappel de la structure d'une donnée de satisfaction renvoyée par l'API
+    </p>
+    <pre>
+        {{ "{" }}
+          "like": 1,
+          "message_id": 1,
+          "motif": "string"
+        {{ "}" }}
+    </pre>
+
+    <h4>Conseil</h4>
+    <p>
+      Les fonctions <code>Math.max(val1, val2)</code> et
+      <code>Math.min(val1, val2)</code> pourront vous être utiles pour la
+      pagination.
+    </p>
+    <p>
+      N'oubliez pas qu'on peut couper un tableau avec la fonction
+      <code>slice(indexdébut, indexfin)</code>
+    </p>
+  </section>
+
+  <h3>3. Manipulation des données</h3>
+
+  <p>
+    Notre Glorieux Leader a regardé les résultats de satisfaction, et comme
+    annoncé, il y a des écarts avec notre politique de bonheur unique
+  </p>
+
+  <p>
+    Vous devez absolument ajouter un bouton permettant de changer l'opinion
+    publique !
+  </p>
+
+  <p>
+    Dans le composant affichant les likes/dislikes, ajoutez un bouton permettant
+    de modifier l'entièreté des données pour refléter une satisfaction totale.
+  </p>
+
+  <section class="goal">
+    <h4>Attendu</h4>
+    <ul>
+      <li>
+        Ajouter un bouton permettant de modifier l'entièreté des données de
+        satisfaction. Au clic, toutes les données de satisfaction doivent être
+        modifiées pour avoir un like à 1 et un message "J'adore cette app ! Elle
+        est superbe !"
+      </li>
+    </ul>
+
+    <h4>Conseil</h4>
+    <p>On est dans un cas typique où il faut mapper des données d'un tableau</p>
+  </section>
+
+  <h3>4. Observateurs extérieurs</h3>
+  <p>
+    Il semblerait que notre méthode de redistribution de la satisfaction ne soit
+    pas appréciée par les autres pays. Ils menacent de couper les routes d'accès
+    à notre pays si nous ne leur donnons pas accès à nos données.
+  </p>
+
+  <p>
+    Faisons en sorte de leur envoyer des données ayant l'air naturelles, ajoutez
+    un bouton pour permettre de mélanger les données de satisfaction.
+  </p>
+
+  <section class="goal">
+    <h4>Attendu</h4>
+    <ul>
+      <li>
+        Ajouter un bouton permettant de mélanger les données de satisfaction. Au
+        clic, les données de satisfaction doivent être mélangées aléatoirement.
+      </li>
+      <li>
+        Les données "likées" auront le message "J'adore cette app ! Elle est
+        superbe !"
+      </li>
+      <li>
+        Les données "dislikées" auront le message "Je n'aime pas cette app !
+        Elle est nulle !"
+      </li>
+    </ul>
+
+    <h4>Conseil</h4>
+    <p>
+      La fonction <code>Math.random</code> permet d'obtenir un nombre entre 0 et
+      1, <code>Math.round</code> permet d'arrondir en fonction de la valeur
+      obtenue
+    </p>
+  </section>
+
+  <h3>5. Manipulation Raisonnable</h3>
+  <p>
+    Peut-être ne sommes-nous pas obligés de tout modifier d'un seul coup, nous
+    pourrions nous contenter de retoucher l'opinion en modifiant une donnée à la
+    fois
+  </p>
+
+  <p>Pour chaque donnée, ajoutons la possibilité de la liker ou disliker</p>
+
+  <section class="goal">
+    <h4>Attendu</h4>
+
+    <ul>
+      <li>
+        Pour chaque donnée de satisfaction, ajouter deux boutons permettant de
+        changer l'opinion, reprendre les nomenclatures précédentes.
+      </li>
+    </ul>
+  </section>
+
+  <h3>6. Bonus</h3>
+  <p>
+    Vous avez terminé toutes les missions ? N'hésitez pas à ajouter un peu de
+    style à l'application pour montrer votre talent !
+  </p>
+</section>

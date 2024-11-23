@@ -1,0 +1,30 @@
+header {
+  padding: 20px;
+  background-color: blue;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+p {
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: #f9f9f9;
+}
+
+.active-link {
+  font-weight: bold;
+}
